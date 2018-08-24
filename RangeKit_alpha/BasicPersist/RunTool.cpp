@@ -340,6 +340,7 @@ BOOL CleanupPersistence()
 	return TRUE;
 }
 
+/*
 BOOL CreateAppendLogFile()
 {
 	PROCESS_INFORMATION process_info;
@@ -388,3 +389,4 @@ BOOL CreateAppendLogFile()
 
 	return TRUE;
 }
+*/
