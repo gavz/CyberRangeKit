@@ -141,7 +141,9 @@ BOOL DropDecoyFile()
 				return FALSE;
 			}
 
-			ToolDropFile(szFilePath);
+			// TESTING
+			//ToolDropFileEmpty(szFilePath);
+			ToolDropFileFromResource(szFilePath);
 		}
 		break;
 	case PROG_FILEMODE::OPF_APPDATA:
@@ -154,7 +156,7 @@ BOOL DropDecoyFile()
 				return FALSE;
 			}
 
-			ToolDropFile(szFilePath);
+			ToolDropFileEmpty(szFilePath);
 		}
 		break;
 	case PROG_FILEMODE::OPF_WINDOWS:
@@ -167,7 +169,7 @@ BOOL DropDecoyFile()
 				return FALSE;
 			}
 
-			ToolDropFile(szFilePath);
+			ToolDropFileEmpty(szFilePath);
 		}
 		break;
 	}

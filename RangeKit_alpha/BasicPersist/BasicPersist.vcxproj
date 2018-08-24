@@ -23,7 +23,7 @@
     <ProjectGuid>{36862C2F-28D8-4363-8E2E-B652D4FE8C38}</ProjectGuid>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <Keyword>ManagedCProj</Keyword>
-    <RootNamespace>BasicDropper</RootNamespace>
+    <RootNamespace>BasicPersist</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
     <ProjectName>BasicPersist</ProjectName>
   </PropertyGroup>
@@ -171,6 +171,10 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="app.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="DecoyBin\DecoyPESimple.bin.encoded" />
+    <None Include="DecoyBin\pedecoy_logger.bin.encoded" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
