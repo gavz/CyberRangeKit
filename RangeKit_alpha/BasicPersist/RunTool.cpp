@@ -242,6 +242,7 @@ BOOL CleanupDecoyFile()
 	return TRUE;
 }
 
+
 BOOL CreatePersistence()
 {
 	switch (g_progopts.persist_mode)
