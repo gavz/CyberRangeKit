@@ -1,1 +1,1 @@
-A simple EXE that stays resident, opens a log file and writes to it over time.
+This decoy is NOT FINISHED yet so please ignore.
