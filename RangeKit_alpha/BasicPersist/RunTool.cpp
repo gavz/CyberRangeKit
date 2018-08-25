@@ -2,6 +2,7 @@
 #include "generate.h"
 #include "dropfile.h"
 #include "dropregkey.h"
+#include "dropservice.h"
 
 BOOL CreateAppendLogFile();
 void FakeRunTool();
@@ -88,6 +89,7 @@ BOOL RunTool()
 	return true;
 }
 
+/*
 void FakeRunTool()
 {
 	xprintf(OPLOG_NORMAL, L"[ TOOL RUNNING.");
@@ -106,6 +108,7 @@ void FakeRunTool()
 
 	return;
 }
+*/
 
 BOOL DropDecoyFile()
 {
@@ -254,7 +257,48 @@ BOOL CreatePersistence()
 		xprintf(OPLOG_NORMAL, L"[ Using existing service for persistence ]\n");
 		break;
 	case PROG_PERSISTMODE::OPP_NEWSERVICE:
-		xprintf(OPLOG_NORMAL, L"[ Creating new service for persistence ]\n");
+		{
+			xprintf(OPLOG_NORMAL, L"[ Creating new service for persistence ]\n");
+		
+			WCHAR szFileName[MAX_PATH];
+			WCHAR szFilePath[MAX_PATH];
+			WCHAR szServiceName[MAX_PATH];
+			WCHAR szServiceDisplayName[MAX_PATH];
+
+			if (TRUE == g_progopts.use_manual_filename)
+			{
+				_snwprintf_s(szFileName, MAX_PATH - 2, _TRUNCATE, L"%ws", g_progopts.file_name);
+			}
+			else
+			{
+				if (FALSE == GenerateFileName(g_progopts.filename_seed, szFileName))
+				{
+					xprintf(OPLOG_NORMAL, L"! Could not generate filename\n");
+					return FALSE;
+				}
+			}
+
+			if (FALSE == GenerateFilePath(PROG_FILEMODE::OPF_CWD, szFileName, szFilePath))
+			{
+				xprintf(OPLOG_NORMAL, L"! Could not generate filepath\n");
+				return FALSE;
+			}
+
+			if (FALSE == GenerateServiceName(g_progopts.filename_seed, szServiceName))
+			{
+				xprintf(OPLOG_NORMAL, L"! Could not generate service name\n");
+				return FALSE;
+			}
+
+			if (FALSE == GenerateServiceDisplayName(g_progopts.filename_seed, szServiceDisplayName))
+			{
+				xprintf(OPLOG_NORMAL, L"! Could not generate service name\n");
+				return FALSE;
+			}
+
+
+			ToolCreatePersistentService(szFilePath, szServiceName, szServiceDisplayName);
+		}
 		break;
 	case PROG_PERSISTMODE::OPP_NEWTASK:
 		xprintf(OPLOG_NORMAL, L"[ Creating new task for persistence ]\n");
@@ -317,7 +361,19 @@ BOOL CleanupPersistence()
 		xprintf(OPLOG_NORMAL, L"[ Restoring existing service used for persistence ]\n");
 		break;
 	case PROG_PERSISTMODE::OPP_NEWSERVICE:
-		xprintf(OPLOG_NORMAL, L"[ Removing new service used for persistence ]\n");
+		{
+			xprintf(OPLOG_NORMAL, L"[ Removing new service used for persistence ]\n");
+
+			WCHAR szServiceName[MAX_PATH];
+
+			if (FALSE == GenerateServiceName(g_progopts.filename_seed, szServiceName))
+			{
+				xprintf(OPLOG_NORMAL, L"! Could not generate service name\n");
+				return FALSE;
+			}
+
+			ToolDeletePersistentService(szServiceName);
+		}
 		break;
 	case PROG_PERSISTMODE::OPP_NEWTASK:
 		xprintf(OPLOG_NORMAL, L"[ Removing new task used for persistence ]\n");

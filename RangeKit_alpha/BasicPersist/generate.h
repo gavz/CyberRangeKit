@@ -7,3 +7,5 @@
 BOOL GenerateFileName(DWORD key, WCHAR *outFileName);
 BOOL GenerateFilePath(PROG_FILEMODE theMode, WCHAR *theFilename, WCHAR *outFilePath);
 BOOL GenerateRegValueNameForExe(DWORD key, WCHAR *outValueName);
+BOOL GenerateServiceName(DWORD key, WCHAR *outFileName);
+BOOL GenerateServiceDisplayName(DWORD key, WCHAR *outFileName);

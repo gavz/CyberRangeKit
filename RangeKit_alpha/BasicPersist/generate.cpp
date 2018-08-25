@@ -4,7 +4,19 @@
 
 BOOL GenerateFileName(DWORD key, WCHAR *outFileName)
 {
-	_snwprintf_s(outFileName, MAX_PATH - 2, _TRUNCATE, L"%ws", L"testfile.bin");
+	_snwprintf_s(outFileName, MAX_PATH - 2, _TRUNCATE, L"%ws%08X.bin", L"testfile", key);
+	return TRUE;
+}
+
+BOOL GenerateServiceName(DWORD key, WCHAR *outFileName)
+{
+	_snwprintf_s(outFileName, MAX_PATH - 2, _TRUNCATE, L"%ws%08X", L"SomeServiceName", key);
+	return TRUE;
+}
+
+BOOL GenerateServiceDisplayName(DWORD key, WCHAR *outFileName)
+{
+	_snwprintf_s(outFileName, MAX_PATH - 2, _TRUNCATE, L"%ws%08X", L"SomeServiceDisplayName", key);
 	return TRUE;
 }
 
