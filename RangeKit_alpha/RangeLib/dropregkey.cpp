@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "dropregkey.h"
+#include "RangeLib.h"
 
 BOOL ToolAddRegKeyForExe(PROG_PERSISTMODE theMode, WCHAR *theValueName, WCHAR *theFilePath)
 {

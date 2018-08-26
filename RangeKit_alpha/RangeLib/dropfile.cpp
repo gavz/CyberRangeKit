@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "resource.h"
+#include "RangeLib.h"
 
 #define BITE_SIZE 1024
 
@@ -41,7 +41,7 @@ BOOL ToolDropFileEmpty(WCHAR *theFilePath)
 	return TRUE;
 }
 
-BOOL ToolDropFileFromResource(WCHAR *theFilePath)
+BOOL ToolDropFileFromResource(WCHAR *theFilePath, LPCWSTR theResourceID)
 {
 	DWORD dwSize;
 	DWORD dwWritten;
@@ -51,7 +51,8 @@ BOOL ToolDropFileFromResource(WCHAR *theFilePath)
 	HGLOBAL hLoaded;
 	LPBYTE lpResourceData;
 
-	hResource = FindResourceW(GetModuleHandle(NULL), MAKEINTRESOURCE(IDR_PEDECOY_LOGGER), L"BINARY");
+	//hResource = FindResourceW(GetModuleHandle(NULL), MAKEINTRESOURCE(theResourceID), L"BINARY");
+	hResource = FindResourceW(GetModuleHandle(NULL), theResourceID, L"BINARY");
 	if (NULL == hResource)
 	{
 		xprintf(OPLOG_NORMAL, L"! Could not find decoy resource for unpacking. Error:%08X\n", GetLastError());

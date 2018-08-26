@@ -1,6 +1,7 @@
 
 #include "stdafx.h"
 #include <stdarg.h>
+#include "RangeLib.h"
 
 CRITICAL_SECTION gConsoleCriticalSection; // for pretty printing
 HANDLE gConsole = NULL;

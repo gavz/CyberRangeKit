@@ -1,11 +1,8 @@
 #include "stdafx.h"
-#include "generate.h"
-#include "dropfile.h"
-#include "dropregkey.h"
-#include "dropservice.h"
+#include "resource.h" 
 
 BOOL CreateAppendLogFile();
-void FakeRunTool();
+//void FakeRunTool();
 
 BOOL DropDecoyFile();
 BOOL CleanupDecoyFile();
@@ -146,7 +143,7 @@ BOOL DropDecoyFile()
 
 			// TESTING
 			//ToolDropFileEmpty(szFilePath);
-			ToolDropFileFromResource(szFilePath);
+			ToolDropFileFromResource(szFilePath, MAKEINTRESOURCE(IDR_PEDECOY_SIMPLE));
 		}
 		break;
 	case PROG_FILEMODE::OPF_APPDATA:

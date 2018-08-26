@@ -1,6 +1,12 @@
 
 #include "stdafx.h"
-#include "generate.h"
+#include "RangeLib.h"
+
+BOOL GenerateLogName(DWORD key, WCHAR *outFileName)
+{
+	_snwprintf_s(outFileName, MAX_PATH - 2, _TRUNCATE, L"%ws%08X.log", L"coms", key);
+	return TRUE;
+}
 
 BOOL GenerateFileName(DWORD key, WCHAR *outFileName)
 {
@@ -20,10 +26,10 @@ BOOL GenerateServiceDisplayName(DWORD key, WCHAR *outFileName)
 	return TRUE;
 }
 
-BOOL GenerateFilePath(PROG_FILEMODE theMode, WCHAR *theFilename, WCHAR *outFilePath)
+BOOL GenerateFilePath(PROG_FILEMODE theMode, WCHAR *theFilename, WCHAR *outFilePath, WCHAR *outWorkingDirectory)
 {
 	WCHAR szWorkingDirectory[MAX_PATH];
-	WCHAR *envName = L"CD";
+	const WCHAR *envName = L"CD";
 	HANDLE hFile = 0;
 
 	if (theMode == PROG_FILEMODE::OPF_CWD)
@@ -58,6 +64,12 @@ BOOL GenerateFilePath(PROG_FILEMODE theMode, WCHAR *theFilename, WCHAR *outFileP
 	}
 
 	_snwprintf_s(outFilePath, MAX_PATH - 2, _TRUNCATE, L"%ws\\%ws", szWorkingDirectory, theFilename);
+
+	if (NULL != outWorkingDirectory)
+	{
+		_snwprintf_s(outWorkingDirectory, MAX_PATH - 2, _TRUNCATE, L"%ws", szWorkingDirectory);
+
+	}
 
 	xprintf(OPLOG_VERBOSE, L"> Generated full file path %ws\n", outFilePath);
 

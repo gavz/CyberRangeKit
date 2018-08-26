@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "dropservice.h"
+#include "RangeLib.h"
 
 BOOL EnableAdminPermissions();
 

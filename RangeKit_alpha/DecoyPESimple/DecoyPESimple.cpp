@@ -83,6 +83,24 @@ int wmain(int argc, WCHAR* argv[])
 {		
 	wprintf(L"Hello Cyber Range Kit\n");
 
+	// force global strings to be present else they will be optimized away
+	if (0 == wcscmp(gszZeroAccessLine, L"test"))
+	{
+		wprintf(L"nada");
+	}
+	if (0 == strcmp(gszFancyBearLine, "test"))
+	{
+		wprintf(L"nada");
+	}
+	if (0 == strcmp(gszAlinaLine, "test"))
+	{
+		wprintf(L"nada");
+	}
+	if (0 == strcmp(gszTriggerString, "test"))
+	{
+		wprintf(L"nada");
+	}
+
 	return 0;
 }
 
