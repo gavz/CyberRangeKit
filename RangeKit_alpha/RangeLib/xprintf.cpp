@@ -3,6 +3,10 @@
 #include <stdarg.h>
 #include "RangeLib.h"
 
+
+// note - cloudify logging, aws -CW
+// app insights in azure -CW
+
 CRITICAL_SECTION gConsoleCriticalSection; // for pretty printing
 HANDLE gConsole = NULL;
 CONSOLE_SCREEN_BUFFER_INFO gConInfo;
